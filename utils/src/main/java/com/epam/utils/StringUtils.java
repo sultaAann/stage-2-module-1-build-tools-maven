@@ -1,9 +1,11 @@
 package com.epam.utils;
 
-import org.apache.commons.lang3.math.NumberUtils;
+import static org.apache.commons.lang3.math.NumberUtils.isCreatable;
 
 public class StringUtils {
     public static boolean isPositiveNumber(String str) {
-        return NumberUtils.isCreatable(str) && Double.parseDouble(str) > 0;
+        if (!isCreatable(str))
+            return false;
+        return !str.contains("-") && !str.trim().equals("") && !str.equals("0");
     }
 }
